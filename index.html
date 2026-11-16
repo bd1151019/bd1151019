@@ -1,83 +1,166 @@
-<!DOCTYPE html>
+、<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>李星妍 | 個人網頁</title>
-    <!-- 引入 Tailwind CSS -->
+    <title>李星妍 | 亮麗極簡主頁</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 引入 Google Fonts -->
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Sans TC', sans-serif; }
-        /* 定義亮麗的漸層背景動畫 */
-        .bg-animated-gradient {
-            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-            background-size: 200% 200%;
-            animation: gradientMove 5s ease infinite;
-        }
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
     </style>
 </head>
-<body class="bg-animated-gradient min-h-screen flex items-center justify-center p-6">
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-fuchsia-500 via-yellow-400 to-cyan-400 p-4 overflow-hidden relative">
 
-    <!-- 主卡片 (毛玻璃效果與大圓角) -->
-    <main class="relative bg-white/80 backdrop-blur-xl rounded-[2.5rem] shadow-2xl shadow-pink-200/50 w-full max-w-sm p-8 pt-16 text-center mt-12 border border-white/50">
+    <!-- 毛玻璃極簡卡片 -->
+    <main class="relative w-full max-w-xs bg-white/20 backdrop-blur-2xl border border-white/60 rounded-[2rem] shadow-[0_8px_32px_0_rgba(0,0,0,0.15)] p-8 pt-20 text-center mt-12">
         
-        <!-- 個人照片預留位置 (突出卡片上方) -->
-        <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 w-32 h-32 bg-white rounded-full p-1.5 shadow-xl shadow-pink-300/30">
-            <!-- 將下方的 src 換成您自己的照片網址 -->
-            <img src="https://placehold.co/400x400/ff7eb3/ffffff?text=Photo" alt="個人照片" class="w-full h-full object-cover rounded-full">
+        <!-- 1. 個人大頭照 (可點擊上傳) -->
+        <div class="absolute -top-16 left-1/2 transform -translate-x-1/2 z-10">
+            <!-- 使用 label 包覆，點擊時觸發隱藏的 input -->
+            <label for="profileUpload" class="cursor-pointer block w-32 h-32 rounded-full p-1 bg-white shadow-[0_0_20px_rgba(255,255,255,0.8)] transition-transform duration-300 hover:scale-105 group relative overflow-hidden">
+                <img id="profileImg" src="https://placehold.co/400x400/ffffff/d946ef?text=Upload" alt="Profile" class="w-full h-full object-cover rounded-full relative z-0">
+                
+                <!-- 滑鼠移上去時的遮罩提示 -->
+                <div class="absolute inset-1 rounded-full bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                    <i class="fa-solid fa-camera text-white text-3xl drop-shadow-md"></i>
+                </div>
+            </label>
+            <!-- 隱藏的檔案選擇器 -->
+            <input type="file" id="profileUpload" accept="image/*" class="hidden">
         </div>
 
-        <!-- 基本資訊 -->
-        <h1 class="text-3xl font-black text-slate-800 tracking-wide mb-1">李 星妍</h1>
-        <p class="text-pink-500 font-bold text-sm mb-4">黎明技術學院數位多媒體系</p>
+        <!-- 2. 姓名 -->
+        <h1 class="text-3xl font-black text-gray-900 tracking-wide drop-shadow-sm mb-3">李 星妍</h1>
         
-        <!-- 一句話介紹 -->
-        <p class="text-slate-600 text-sm leading-relaxed mb-6 font-medium px-2">
-            「喜歡簡單生活，也喜歡認真對待每一件事。」
+        <!-- 3. 簡介 -->
+        <p class="text-gray-800 font-bold text-sm mb-8 leading-relaxed">
+            喜歡簡單生活，<br>也喜歡認真對待每一件事。
         </p>
 
-        <!-- 興趣與技能區塊精簡版 -->
-        <div class="space-y-4 mb-6">
-            <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">My Skills</span>
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 bg-gradient-to-r from-orange-400 to-rose-400 text-white rounded-full text-xs font-bold shadow-md">寫代碼</span>
-                    <span class="px-3 py-1 bg-gradient-to-r from-orange-400 to-rose-400 text-white rounded-full text-xs font-bold shadow-md">微積分</span>
-                </div>
-            </div>
-            <div>
-                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-2">My Hobbies</span>
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 bg-gradient-to-r from-cyan-400 to-blue-400 text-white rounded-full text-xs font-bold shadow-md">讀書</span>
-                    <span class="px-3 py-1 bg-gradient-to-r from-cyan-400 to-blue-400 text-white rounded-full text-xs font-bold shadow-md">睡覺</span>
-                </div>
-            </div>
+        <!-- 4. 聯絡方式 (Email, Line, Instagram) -->
+        <div class="flex justify-center gap-6">
+            <!-- Email -->
+            <a href="mailto:BD1151019@venus.lit.edu.tw.com" class="text-3xl text-gray-900 hover:text-white hover:-translate-y-1 transition-all duration-300 drop-shadow-sm">
+                <i class="fa-solid fa-envelope"></i>
+            </a>
+            <!-- Line -->
+            <a href="#" title="Line ID: eyeechon" class="text-3xl text-gray-900 hover:text-[#00c300] hover:-translate-y-1 transition-all duration-300 drop-shadow-sm">
+                <i class="fa-brands fa-line"></i>
+            </a>
+            <!-- Instagram -->
+            <a href="https://instagram.com/holamamiexx" target="_blank" class="text-3xl text-gray-900 hover:text-[#E1306C] hover:-translate-y-1 transition-all duration-300 drop-shadow-sm">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
         </div>
-
-        <!-- 聯絡方式卡片區 -->
-        <div class="bg-white/60 rounded-2xl p-4 text-left space-y-3 shadow-inner">
-            <div class="flex items-center text-sm">
-                <span class="w-8 text-pink-500 font-bold">✉️</span>
-                <span class="text-slate-700 font-medium text-xs break-all">BD1151019@venus.lit.edu.tw.tw</span>
-            </div>
-            <div class="flex items-center text-sm">
-                <span class="w-8 text-green-500 font-bold">💬</span>
-                <span class="text-slate-700 font-medium text-sm">eyeechon</span>
-            </div>
-            <div class="flex items-center text-sm">
-                <span class="w-8 text-purple-500 font-bold">📷</span>
-                <span class="text-slate-700 font-medium text-sm">holamamiexx</span>
-            </div>
-        </div>
-
+        
     </main>
 
+    <!-- 訊息提示框 (取代 alert) -->
+    <div id="toast" class="fixed top-4 left-1/2 transform -translate-x-1/2 -translate-y-20 opacity-0 bg-white/90 backdrop-blur-md text-gray-800 px-6 py-3 rounded-full shadow-lg transition-all duration-500 font-bold flex items-center gap-2 pointer-events-none z-50">
+        <i id="toastIcon" class="fa-solid"></i>
+        <span id="toastMsg"></span>
+    </div>
+
+    <script>
+        const profileUpload = document.getElementById('profileUpload');
+        const profileImg = document.getElementById('profileImg');
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMsg');
+        const toastIcon = document.getElementById('toastIcon');
+        
+        const STORAGE_KEY = 'lixingyan_profile_pic';
+
+        // 1. 網頁載入時，檢查是否有儲存過的照片
+        const savedPic = localStorage.getItem(STORAGE_KEY);
+        if (savedPic) {
+            profileImg.src = savedPic;
+        }
+
+        // 2. 處理照片上傳與壓縮儲存
+        profileUpload.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    const dataUrl = event.target.result;
+                    
+                    // 使用 Canvas 壓縮圖片，避免 LocalStorage 容量超載 (上限約 5MB)
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        // 設定最大長寬為 400px
+                        const MAX_SIZE = 400;
+                        let width = img.width;
+                        let height = img.height;
+
+                        if (width > height) {
+                            if (width > MAX_SIZE) {
+                                height *= MAX_SIZE / width;
+                                width = MAX_SIZE;
+                            }
+                        } else {
+                            if (height > MAX_SIZE) {
+                                width *= MAX_SIZE / height;
+                                height = MAX_SIZE;
+                            }
+                        }
+                        
+                        canvas.width = width;
+                        canvas.height = height;
+                        
+                        // 繪製壓縮後的圖片
+                        ctx.drawImage(img, 0, 0, width, height);
+                        
+                        // 轉換為較不佔空間的 jpeg 格式 DataURL
+                        const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.8);
+                        
+                        // 顯示在畫面上
+                        profileImg.src = compressedDataUrl;
+                        
+                        // 儲存到 LocalStorage
+                        try {
+                            localStorage.setItem(STORAGE_KEY, compressedDataUrl);
+                            showToast('照片已成功更新並儲存！', 'success');
+                        } catch (err) {
+                            console.error(err);
+                            showToast('儲存失敗：可能空間不足。', 'error');
+                        }
+                    };
+                    img.src = dataUrl;
+                };
+                
+                reader.readAsDataURL(file);
+            } else {
+                showToast('請選擇有效的圖片檔案！', 'error');
+            }
+            
+            // 清空選擇，允許重複選擇同一張
+            e.target.value = '';
+        });
+
+        // 3. 自訂訊息提示功能
+        function showToast(message, type) {
+            toastMsg.innerText = message;
+            toastIcon.className = type === 'success' ? 'fa-solid fa-circle-check text-green-500' : 'fa-solid fa-circle-exclamation text-red-500';
+            
+            // 顯示動畫
+            toast.classList.remove('-translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            
+            // 3秒後隱藏
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
 </body>
 </html>
